@@ -1,6 +1,6 @@
 /////////////////////////////////////////////////////////////////////
 // Copyright (c) Autodesk, Inc. All rights reserved
-// Written by Forge Partner Development
+// Written by Autodesk Partner Development
 //
 // Permission to use, copy, modify, and distribute this software in
 // object code form for any purpose and without fee is hereby granted,
@@ -44,15 +44,24 @@ router.use(async (req, res, next) => {
 router.get('/designautomation/engines', async(req, res, next) => {
     const api = Utils.dav3API(req.oauth_token);
     let engines = null;
+    let Allengines = [];
+    let paginationToken = null;
     try {
-        engines = await api.getEngines();
+        while(true){
+            engines = await api.getEngines( {"page": paginationToken});
+            Allengines = Allengines.concat(engines.data);
+            if (engines.paginationToken == null) {
+                break;
+            }
+            paginationToken = engines.paginationToken;
+        }
     } catch (ex) {
         console.error(ex);
         return res.status(500).json({
             diagnostic: 'Failed to get engine list'
         });
     }
-    const engineList = engines.data.filter((engine) => {
+    const engineList = Allengines.filter((engine) => {
         return (engine.indexOf('Revit') >= 0)
     })
     return (res.status(200).json(engineList.sort())); // return list of engines

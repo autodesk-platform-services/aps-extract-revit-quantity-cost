@@ -3,8 +3,8 @@
   <Components Description="Export Revit Qto Info">
     <RuntimeRequirements OS="Win64"
                          Platform="Revit"
-                         SeriesMin="R2019"
-                         SeriesMax="R2020" />
+                         SeriesMin="R2021"
+                         SeriesMax="R2023" />
     <ComponentEntry AppName="RevitQtoApp"
                     Version="1.0.0"
                     ModuleName="./Contents/RevitQto.addin"
