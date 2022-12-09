@@ -1,6 +1,6 @@
 /////////////////////////////////////////////////////////////////////
 // Copyright (c) Autodesk, Inc. All rights reserved
-// Written by Forge Partner Development
+// Written by Autodesk Partner Development
 //
 // Permission to use, copy, modify, and distribute this software in
 // object code form for any purpose and without fee is hereby granted,
@@ -65,8 +65,8 @@ if (!String.prototype.format) {
 }
 
 function prepareLists() {
-    list('engines', '/api/forge/designautomation/engines');
-    list('localBundles', '/api/forge/appbundles');
+    list('engines', '/api/aps/designautomation/engines');
+    list('localBundles', '/api/aps/appbundles');
 }
 
 
@@ -102,7 +102,7 @@ async function resetPriceBook() {
 
 // delete appbundle
 async function deleteAppBundle( appBundleName ) {
-    const requestUrl = '/api/forge/designautomation/appbundles/' + encodeURIComponent(appBundleName);
+    const requestUrl = '/api/aps/designautomation/appbundles/' + encodeURIComponent(appBundleName);
     try {
         await apiClientAsync(requestUrl, null, 'delete');
     } catch (err) {
@@ -114,7 +114,7 @@ async function deleteAppBundle( appBundleName ) {
 
 // delete activity
 async function deleteActivity( activityName) {
-    const requestUrl = '/api/forge/designautomation/activities/' + encodeURIComponent(activityName);
+    const requestUrl = '/api/aps/designautomation/activities/' + encodeURIComponent(activityName);
     try {
         await apiClientAsync(requestUrl, null, 'delete');
     } catch (err) {
@@ -155,7 +155,7 @@ async function createAppBundleActivity() {
 
 // init the price book database
 async function initPriceBook( budgetCodeLength ){
-    const requestUrl = 'api/forge/pricebook/database';
+    const requestUrl = 'api/aps/pricebook/database';
     const requestBody = {
         budgetCodeLength: budgetCodeLength
     };
@@ -169,7 +169,7 @@ async function initPriceBook( budgetCodeLength ){
 
 // create appbundle
 async function createAppBundle(fileName) {
-    const requestUrl = 'api/forge/designautomation/appbundles';
+    const requestUrl = 'api/aps/designautomation/appbundles';
     const requestBody = {
         fileName: fileName,
         engine: $('#engines').val()
@@ -185,7 +185,7 @@ async function createAppBundle(fileName) {
 
 // create activity
 async function createActivity(fileName) {
-    const requestUrl = 'api/forge/designautomation/activities';
+    const requestUrl = 'api/aps/designautomation/activities';
     const requestBody = {
         fileName: fileName,
         engine: $('#engines').val()

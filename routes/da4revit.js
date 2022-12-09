@@ -1,6 +1,6 @@
 /////////////////////////////////////////////////////////////////////
 // Copyright (c) Autodesk, Inc. All rights reserved
-// Written by Forge Partner Development
+// Written by Autodesk Partner Development
 //
 // Permission to use, copy, modify, and distribute this software in
 // object code form for any purpose and without fee is hereby granted,
@@ -66,7 +66,7 @@ router.get('/da4revit/revit/:version_storage/qto', async (req, res, next) => {
         Headers: {
             'Content-Type': 'application/json'
         },
-        url: `${designAutomation.app_base_domain}/api/forge/da4revit/file`
+        url: `${designAutomation.app_base_domain}/api/aps/da4revit/file`
     };
     const workItemSpec = {
         activityId: `${Utils.NickName}.${Utils.ActivityName}+${Utils.Alias}`,
@@ -75,7 +75,7 @@ router.get('/da4revit/revit/:version_storage/qto', async (req, res, next) => {
             outputJson: outputJsonArgument,
             onComplete: {
                 verb: 'post',
-                url: `${designAutomation.app_base_domain}/api/forge/callback/designautomation`
+                url: `${designAutomation.app_base_domain}/api/aps/callback/designautomation`
             }
         }
     };
@@ -98,6 +98,7 @@ router.get('/da4revit/revit/:version_storage/qto', async (req, res, next) => {
         }));
     }
     console.log('Submitted the workitem: ' + workItemStatus.id);
+    console.log(workItemSpec);
     workitemList.push({
         workitemId: workItemStatus.id
     })
