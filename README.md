@@ -28,10 +28,6 @@ The sample also provides the ability to import the generated budgets directly in
 # Demonstration
 [![https://youtu.be/zJKvatl3zek](http://img.youtube.com/vi/zJKvatl3zek/0.jpg)](https://youtu.be/zJKvatl3zek "Generate Quantity and Budget from Revit model directly, and export to BIM360 Cost module as new Budgets")
 
-
-# Live Demo
-[https://revit-qto-bim360.herokuapp.com/](https://revit-qto-bim360.herokuapp.com/)
-
 # Main Parts of The Work
 1. Create a Revit Plugin to be used within AppBundle of Design Automation for Revit. Please check [PlugIn](./RevitQtoPlugin/) 
 2. Create your App, upload the AppBundle, define your Activity, you can simply use the `**Configure**` button in the Web Application to create the Appbundle & Activity.
