@@ -41,7 +41,7 @@ The sample also provides the ability to import the generated budgets directly in
 2. **BIM 360 Account**: must be an Account Admin to add the app custom integration, or invited by an admin of a BIM 360 Account. [Learn about provisioning](https://aps.autodesk.com/blog/bim-360-docs-provisioning-forge-apps). 
 3. **BIM 360 Cost Management**: Create BIM 360 project, activate Cost Management module, setup project to create **Budget Code Template** for Cost Management according to [the guide](https://help.autodesk.com/view/BIM360D/ENU/?guid=BIM360D_Cost_Management_getting_started_with_cost_management_html)
 4. **Visual Code**: Visual Code (Windows or MacOS).
-5. **Revit 2020** & **Visual Studio 2017**: required to compile changes into the plugin
+5. **Revit 2023** & **Visual Studio 2019**: required to compile changes into the plugin
 6. **ngrok**: Routing tool, [download here](https://ngrok.com/)
 7. **MongoDB**: noSQL database, learn more. Or use a online version via Mongo Altas (this is used on this sample)
 
@@ -50,7 +50,7 @@ For using this sample, you need an Autodesk developer credentials. Visit the [Au
 
 ## Running locally
 
-Install [NodeJS](https://nodejs.org), version 8 or newer.
+Install [NodeJS](https://nodejs.org), version 14 or newer.
 
 Clone this project or download it (this `nodejs` branch only). It's recommended to install [GitHub desktop](https://desktop.github.com/). To clone it via command line, use the following (**Terminal** on MacOSX/Linux, **Git Shell** on Windows):
 
@@ -88,7 +88,10 @@ Mac OSX/Linux (Terminal)
     export APS_CLIENT_ID=<<YOUR CLIENT ID FROM DEVELOPER PORTAL>>
     export APS_CLIENT_SECRET=<<YOUR CLIENT SECRET>>
     export APS_CALLBACK_URL=<<YOUR CALLBACK URL>>
-    export APS_WEBHOOK_URL=<<YOUR DESIGN AUTOMATION FOR REVIT CALLBACK URL>>
+    export APS_SERVER_DOMAIN=<<YOUR DESIGN AUTOMATION FOR REVIT CALLBACK URL>>
+    export DESIGN_AUTOMATION_NICKNAME=<<YOUR DESIGN AUTOMATION FOR REVIT NICK NAME>>
+    export DESIGN_AUTOMATION_ACTIVITY_NAME=<<YOUR DESIGN AUTOMATION FOR REVIT ACTIVITY NAME>>
+    export DESIGN_AUTOMATION_ACTIVITY_ALIAS=<<YOUR DESIGN AUTOMATION FOR REVIT ACTIVITY ALIAS>>    
     export OAUTH_DATABASE="mongodb+srv://<username>:<password>@<clustername>-<njl8m>.mongodb.net>>"
 
     npm start
@@ -99,9 +102,23 @@ Windows (use **Node.js command line** from Start menu)
     set APS_CLIENT_ID=<<YOUR CLIENT ID FROM DEVELOPER PORTAL>>
     set APS_CLIENT_SECRET=<<YOUR CLIENT SECRET>>
     set APS_CALLBACK_URL=<<YOUR CALLBACK URL>>
-    set APS_WEBHOOK_URL=<<YOUR DESIGN AUTOMATION FOR REVIT CALLBACK URL>>
+    set APS_SERVER_DOMAIN=<<YOUR DESIGN AUTOMATION FOR REVIT CALLBACK URL>>
+    set DESIGN_AUTOMATION_NICKNAME=<<YOUR DESIGN AUTOMATION FOR REVIT NICK NAME>>
+    set DESIGN_AUTOMATION_ACTIVITY_NAME=<<YOUR DESIGN AUTOMATION FOR REVIT ACTIVITY NAME>>
+    set DESIGN_AUTOMATION_ACTIVITY_ALIAS=<<YOUR DESIGN AUTOMATION FOR REVIT ACTIVITY ALIAS>>
     set OAUTH_DATABASE="mongodb+srv://<username>:<password>@<clustername>-<njl8m>.mongodb.net>>"
     npm start
+
+**Note.**
+environment variable examples:
+- APS_CALLBACK_URL: `http://localhost:3000/api/aps/callback/oauth`
+- APS_WEBHOOK_URL: `http://808efcdc123456.ngrok.io/api/aps/callback/designautomation`
+
+The following are optional:
+- DESIGN_AUTOMATION_NICKNAME: Only necessary if there is a nickname, APS client id by default.
+- DESIGN_AUTOMATION_ACTIVITY_NAME: Only necessary if the activity name is customized, RevitQtoActivity by default.
+- DESIGN_AUTOMATION_ACTIVITY_ALIAS: Only necessary if the activity alias is customized, dev by default.
+
 
 ## Using the app
 
@@ -111,7 +128,7 @@ Open the browser: [http://localhost:3000](http://localhost:3000).
 
 - **Setup the app before using the App**
 1. Make sure the APS App is integrated with your BIM 360 account, please click **Enable my BIM 360 Account** button and follow the steps to finish the integration. 
-2. Make sure to create **Revi Design Automation** Appbundle & activity, click **Configure** button, select local **AppBundle** and **Engine** to create. Currently, Revit 2019|2020 engines are both supported. 
+2. Make sure to create **Revi Design Automation** Appbundle & activity, click **Configure** button, select local **AppBundle** and **Engine** to create. Currently, Revit 2021|2022|2023 engines are both supported. 
 3. Make sure to [Create BIM360 project, activate Cost Management module, setup project for Cost Management](https://help.autodesk.com/view/BIM360D/ENU/?guid=BIM360D_Cost_Management_getting_started_with_cost_management_html), a **Budget Code Template** must be created before adding or importing budget items.
 4. Make sure to initialize the **Price Book** database, open **Price Book** dialog, set **Length of budget code** according to your definition for **Budget Code Template**(the digits length of your budget code), and click **Reset** button, it will create **Standard_Book**(database), **Price_Book**(collection), with a couple of predefined sample price items.
 
