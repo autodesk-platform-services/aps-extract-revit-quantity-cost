@@ -44,7 +44,7 @@ router.get('/oauth/clientid', (req, res) =>{
 router.get('/oauth/url', (req, res) => {
     const url =
         'https://developer.api.autodesk.com' +
-        '/authentication/v1/authorize?response_type=code' +
+        '/authentication/v2/authorize?response_type=code' +
         '&client_id=' + config.credentials.client_id +
         '&redirect_uri=' + config.credentials.callback_url +
         '&scope=' + config.scopes.internal.join(' ');
